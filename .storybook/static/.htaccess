@@ -1,0 +1,5 @@
+# Storybook（開発者向けのカタログ）はビルド結果にインラインスクリプトを含むため、
+# アプリ本体より緩いCSPをこのディレクトリだけに適用する。アプリ本体は script-src 'self' のまま
+<IfModule mod_headers.c>
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; base-uri 'self'; frame-ancestors 'self'; object-src 'none'"
+</IfModule>

@@ -55,6 +55,7 @@
 - 値（色・余白・角丸など）は `src/styles/_tokens.scss` だけが持ち、CSS変数として出力する
 - React側は `theme.ts` でその変数を型付きで参照する。旧画面のSassも同じ変数を使うため、**移行途中でも見た目が揃う**
 - トレードオフ：styled-componentsは実行時に `<style>` を挿入するため、CSPで `style-src 'unsafe-inline'` を許可している。厳しくするなら、nonceの付与か、ビルド時にCSSを出力する方式（vanilla-extract等）への移行が選択肢
+- スクリプトは `script-src 'self'` でインライン実行を禁止している。Storybookはビルド結果にインラインスクリプトを含むため、`/storybook/` 配下だけに別のCSPを適用している（`.storybook/static/.htaccess`）
 
 ### 5. テストの方針
 
