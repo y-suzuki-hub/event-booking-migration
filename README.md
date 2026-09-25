@@ -20,7 +20,7 @@
 | CSS設計 | Sassのトークンを一次情報にしてCSS変数を出力し、styled-componentsと旧画面のSass（BEM）が同じ変数を参照 |
 | デザインシステム | Storybookでコンポーネントとトークンを一覧化 |
 | セキュリティ | 許可リスト方式のHTML無害化、旧コードの `.html()` 連結を `.text()` へ修正、CSP、サーバー側での再検証 |
-| 性能 | Lighthouse（モバイル）中央値 93点。モックAPIを初回描画の経路から外し、バーの伸縮は `transform` で描画 |
+| 性能 | Lighthouse（モバイル・公開URLで3回計測）中央値 96点、CLS 0。モックAPIを初回描画の経路から外し、バーの伸縮は `transform` で描画 |
 
 ## 画面
 
