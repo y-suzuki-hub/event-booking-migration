@@ -1,0 +1,144 @@
+// 旧画面のスタイル。BEMで命名し、値は新画面と同じトークンから取る
+@use '../styles/base';
+@use '../styles/tokens' as t;
+
+.legacy-header {
+  background: t.color('text');
+  color: #fff;
+
+  &__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: t.space(4);
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: t.space(3) t.space(4);
+  }
+
+  &__brand {
+    font-weight: 800;
+  }
+
+  &__link {
+    color: #fff;
+    font-size: var(--font-sm);
+    font-weight: 700;
+  }
+}
+
+.legacy-main {
+  display: grid;
+  gap: t.space(5);
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: t.space(6) t.space(4) t.space(7);
+}
+
+.migration-panel {
+  display: grid;
+  gap: t.space(3);
+  padding: t.space(5);
+  background: t.color('surface');
+  border: 1px solid t.color('border');
+  border-left: 4px solid t.color('primary');
+  border-radius: var(--radius-lg);
+
+  &__title {
+    font-size: var(--font-xl);
+    line-height: 1.4;
+  }
+
+  &__switch {
+    display: flex;
+    flex-wrap: wrap;
+    gap: t.space(2) t.space(5);
+    margin: 0;
+    padding: t.space(3) t.space(4);
+    border: 1px solid t.color('border');
+    border-radius: var(--radius-md);
+
+    legend {
+      padding: 0 t.space(1);
+      font-size: var(--font-sm);
+      font-weight: 700;
+    }
+
+    label {
+      display: inline-flex;
+      gap: t.space(2);
+      align-items: center;
+      min-height: 44px;
+      cursor: pointer;
+    }
+  }
+
+  &__note {
+    font-size: var(--font-sm);
+    color: t.color('muted');
+  }
+}
+
+.event-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+  background: t.color('surface');
+  font-size: var(--font-sm);
+
+  &-wrap {
+    overflow-x: auto;
+    border: 1px solid t.color('border');
+    border-radius: var(--radius-lg);
+  }
+
+  th,
+  td {
+    padding: t.space(3) t.space(4);
+    text-align: left;
+    vertical-align: middle;
+    border-bottom: 1px solid t.color('border');
+  }
+
+  th {
+    color: t.color('muted');
+    background: t.color('bg');
+  }
+
+  &__capacity {
+    min-width: 200px;
+  }
+}
+
+.capacity-bar {
+  &__track {
+    height: 8px;
+    overflow: hidden;
+    background: t.color('border');
+    border-radius: var(--radius-pill);
+  }
+
+  &__fill {
+    height: 100%;
+    transform-origin: left center;
+
+    &--open {
+      background: t.color('success');
+    }
+
+    &--few {
+      background: t.color('warning');
+    }
+
+    &--closed {
+      background: t.color('danger');
+    }
+  }
+
+  &__label {
+    margin-top: t.space(1);
+    font-size: var(--font-sm);
+    color: t.color('muted');
+  }
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="jQueryで作られた旧画面の一部を、Reactへ段階的に置き換えるデモ" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>旧画面（jQuery）| イベント予約</title>
+  </head>
+  <body>
+    <header class="legacy-header">
+      <div class="legacy-header__inner">
+        <p class="legacy-header__brand">イベント予約（旧画面）</p>
+        <a class="legacy-header__link" href="./">新画面（React）へ</a>
+      </div>
+    </header>
+
+    <main class="legacy-main">
+      <section class="migration-panel" aria-labelledby="legacy-title">
+        <h1 class="migration-panel__title" id="legacy-title">旧画面：イベント一覧（jQuery）</h1>
+        <p>
+          この画面はjQueryで作られた旧実装です。画面全体を作り直すのではなく、<strong>残席表示の部分だけ</strong>をReactに置き換えています。
+          ReduxストアとAPIのキャッシュは新画面と同じものを使っています。
+        </p>
+        <fieldset class="migration-panel__switch">
+          <legend>残席表示の実装（切り替えるとその場で差し替わります）</legend>
+          <label><input type="radio" name="impl" value="react" /> React（移行後）</label>
+          <label><input type="radio" name="impl" value="jquery" /> jQueryプラグイン（移行前に戻す）</label>
+        </fieldset>
+        <p class="migration-panel__note" id="impl-note" aria-live="polite"></p>
+      </section>
+
+      <p id="legacy-status" role="status">読み込み中…</p>
+
+      <div class="event-table-wrap">
+        <table class="event-table">
+          <thead>
+            <tr>
+              <th scope="col">イベント</th>
+              <th scope="col">開催日時</th>
+              <th scope="col">会場</th>
+              <th scope="col">申込状況</th>
+            </tr>
+          </thead>
+          <tbody id="event-rows"></tbody>
+        </table>
+      </div>
+    </main>
+
+    <script type="module" src="/src/legacy/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+// デザイントークンの一次情報。Sassで定義し、CSSカスタムプロパティとして出力する。
+// React（styled-components）と旧画面（jQuery + Sass）の両方が同じ変数を参照するので、
+// 移行途中でも見た目が揃う。
+@use 'sass:map';
+
+$colors: (
+  'text': #1f2430,
+  'muted': #555e70,
+  'bg': #f5f6f8,
+  'surface': #ffffff,
+  'border': #dde1e8,
+  'primary': #2952c8,
+  'primary-hover': #1f41a3,
+  'primary-weak': #e9eefb,
+  'success': #1c7a44,
+  'success-weak': #e2f3e8,
+  'warning': #9a4d00,
+  'warning-weak': #fff0dc,
+  'danger': #b92424,
+  'danger-weak': #fce7e7,
+  'focus': #6f97ff,
+);
+
+$space: (1: 4px, 2: 8px, 3: 12px, 4: 16px, 5: 24px, 6: 32px, 7: 48px);
+$radius: ('sm': 4px, 'md': 8px, 'lg': 12px, 'pill': 999px);
+$font-size: ('xs': 0.75rem, 'sm': 0.8125rem, 'md': 0.9375rem, 'lg': 1.125rem, 'xl': 1.5rem);
+$shadow: ('card': (0 1px 2px rgb(20 30 60 / 6%), 0 4px 16px rgb(20 30 60 / 6%)));
+
+@mixin emit {
+  @each $name, $value in $colors { --color-#{$name}: #{$value}; }
+  @each $name, $value in $space { --space-#{$name}: #{$value}; }
+  @each $name, $value in $radius { --radius-#{$name}: #{$value}; }
+  @each $name, $value in $font-size { --font-#{$name}: #{$value}; }
+  @each $name, $value in $shadow { --shadow-#{$name}: #{$value}; }
+  --font-family: system-ui, -apple-system, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Meiryo', sans-serif;
+}
+
+@function color($name) {
+  @if not map.has-key($colors, $name) { @error 'Unknown color token: #{$name}'; }
+  @return var(--color-#{$name});
+}
+
+@function space($step) {
+  @if not map.has-key($space, $step) { @error 'Unknown space token: #{$step}'; }
+  @return var(--space-#{$step});
+}
